@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh Sách Dự Án - BĐS Hưng Thịnh</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Thêm Google Fonts cao cấp -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* BẢNG MÀU & FONT CHỮ LUXURY */
+        :root {
+            --luxury-gold: #c5a059;
+            --luxury-gold-dark: #b08d46;
+            --luxury-dark: #111827;
+            --luxury-navy: #0f172a;
+            --bg-light: #f8fafc;
+        }
+        body { font-family: 'Inter', sans-serif; background-color: #fcfcfc; color: #333333; }
+        
+        /* NAVBAR LUXURY (Đồng bộ với Index) */
+        .navbar-luxury {
+            background-color: var(--luxury-navy) !important;
+            border-bottom: 2px solid var(--luxury-gold);
+            padding: 15px 0;
+        }
+        .navbar-brand {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            letter-spacing: 1px;
+            color: var(--luxury-gold) !important;
+            font-weight: 700;
+        }
+        .navbar-nav .nav-link { color: #e2e8f0 !important; font-weight: 500; margin-right: 15px; transition: color 0.3s ease; }
+        .navbar-nav .nav-link:hover, .navbar-nav .nav-link.active { color: var(--luxury-gold) !important; }
+
+        /* BUTTON LUXURY */
+        .btn-luxury-primary {
+            background-color: var(--luxury-gold); color: #ffffff; border: none;
+            padding: 12px 20px; font-weight: 600; letter-spacing: 1px;
+            text-transform: uppercase; border-radius: 0px; transition: all 0.3s ease;
+        }
+        .btn-luxury-primary:hover { background-color: var(--luxury-gold-dark); color: #ffffff; }
+        
+        .btn-outline-luxury {
+            border: 1px solid var(--luxury-gold); color: var(--luxury-gold);
+            background: transparent; border-radius: 0px; font-weight: 600; 
+            text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        .btn-outline-luxury:hover { background-color: var(--luxury-gold); color: #ffffff; }
+
+        /* TIÊU ĐỀ TRANG */
+        .page-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--luxury-navy);
+            border-bottom: 2px solid var(--luxury-gold);
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        /* BỘ LỌC (FILTER BOX) */
+        .filter-box {
+            background-color: #ffffff;
+            border: none;
+            border-top: 3px solid var(--luxury-gold);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border-radius: 0;
+        }
+        .filter-title {
+            font-family: 'Cormorant Garamond', serif;
+            color: var(--luxury-navy);
+            font-weight: 700;
+            font-size: 1.4rem;
+        }
+        .form-label { font-weight: 600; color: #475569; font-size: 0.95rem; }
+        .form-select {
+            border-radius: 0;
+            border: 1px solid #cbd5e1;
+            padding: 10px 15px;
+        }
+        .form-select:focus {
+            border-color: var(--luxury-gold);
+            box-shadow: 0 0 0 0.2rem rgba(197, 160, 89, 0.25);
+        }
+
+        /* CARD BẤT ĐỘNG SẢN (Đồng bộ với Index) */
+        .project-card {
+            border: none; border-radius: 0px; background: #ffffff;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            overflow: hidden;
+            border-top: 3px solid transparent;
+        }
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(15, 23, 42, 0.12);
+            border-top: 3px solid var(--luxury-gold);
+        }
+        .card-img-wrapper { overflow: hidden; height: 220px; }
+        .card-img-top { height: 100%; width: 100%; object-fit: cover; transition: transform 0.6s ease; }
+        .project-card:hover .card-img-top { transform: scale(1.08); }
+        .card-body { padding: 25px; }
+        .card-title { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 700; color: var(--luxury-navy); margin-bottom: 10px; }
+        .price-tag { color: var(--luxury-gold-dark); font-size: 1.2rem; font-weight: 700; font-family: 'Cormorant Garamond', serif; }
+
+        /* FOOTER */
+        footer { background-color: var(--luxury-navy); color: #94a3b8; padding: 30px 0; border-top: 2px solid var(--luxury-gold); text-align: center; }
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark navbar-luxury sticky-top">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">✦ BĐS HƯNG THỊNH</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item"><a class="nav-link" href="index.html">Trang Chủ</a></li>
+                <li class="nav-item"><a class="nav-link active" href="listings.html">Danh Sách Dự Án</a></li>
+            </ul>
+            <ul class="navbar-nav ms-auto align-items-center">
+                <li class="nav-item"><a class="nav-link fw-bold" href="user_dashboard.html" id="welcomeMessage" style="color: var(--luxury-gold) !important;"></a></li>
+                <li class="nav-item"><a href="post_property.html" class="btn btn-luxury-primary btn-sm ms-3">✦ Đăng Tin</a></li>
+                <li class="nav-item"><button class="btn btn-outline-danger btn-sm ms-2 rounded-0 px-3" onclick="logout()">Đăng Xuất</button></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- NỘI DUNG CHÍNH -->
+<div class="container mt-5 mb-5">
+    <div class="row">
+        <!-- CỘT BỘ LỌC (SIDEBAR) -->
+        <div class="col-md-3 mb-4">
+            <div class="filter-box p-4 position-sticky" style="top: 100px;">
+                <h5 class="filter-title mb-4">Bộ Lọc Tìm Kiếm</h5>
+                
+                <div class="mb-4">
+                    <label class="form-label">Loại Bất Động Sản</label>
+                    <select id="filterType" class="form-select">
+                        <option value="all">Tất cả loại hình</option>
+                        <option value="villa">Biệt thự cao cấp</option>
+                        <option value="apartment">Căn hộ hạng sang</option>
+                        <option value="house">Nhà phố / Shophouse</option>
+                        <option value="land">Quỹ đất đắc địa</option>
+                    </select>
+                </div>
+
+                <div class="mb-4">
+                    <label class="form-label">Khoảng Giá</label>
+                    <select id="filterPrice" class="form-select">
+                        <option value="all">Tất cả mức giá</option>
+                        <option value="under3">Dưới 3 Tỷ</option>
+                        <option value="3to5">Từ 3 - 5 Tỷ</option>
+                        <option value="over5">Trên 5 Tỷ</option>
+                    </select>
+                </div>
+
+                <button class="btn btn-luxury-primary w-100" onclick="applyFilters()">Áp Dụng Tùy Chọn</button>
+            </div>
+        </div>
+
+        <!-- CỘT HIỂN THỊ KẾT QUẢ -->
+        <div class="col-md-9">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h3 class="page-title m-0">Bộ Sưu Tập Dự Án</h3>
+                <span class="text-muted fw-bold">Tìm thấy <span id="resultCount" style="color: var(--luxury-gold-dark);">0</span> kiệt tác</span>
+            </div>
+            
+            <div class="row g-4" id="listingsContainer">
+                <!-- Javascript sẽ render danh sách vào đây -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="mt-5">
+    <div class="container">
+        <p class="mb-0">&copy; 2026 Bất Động Sản Hưng Thịnh Luxury. All Rights Reserved.</p>
+    </div>
+</footer>
+
+<script>
+    // 1. MẢNG DỮ LIỆU ĐỒNG BỘ TỪ TRANG CHỦ
+    const allProperties = [
+        { id: 1, type: "villa", priceRange: "over5", title: "Biệt Thự Ven Hồ Tự Nhiên", price: "15 Tỷ VND", area: "300m2", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMNh7HIHB4dmFJbPd47aI4e6J6DgqEwVE3AJAI7baNvk0ktuTvdTIGfBY&s=10" },
+        { id: 2, type: "apartment", priceRange: "3to5", title: "Căn Hộ Trung Tâm Thành Phố", price: "3.5 Tỷ VND", area: "85m2", img: "https://image.vietstock.vn/2026/06/02/Picture-2-20260602.png" },
+        { id: 3, type: "land", priceRange: "under3", title: "Đất Nền Khu Đô Thị Mới", price: "2.8 Tỷ VND", area: "100m2", img: "https://cdn.thuviennhadat.vn//upload/hinh-anh-bai-viet/LNT/13-12/dat-nen-8.jpg" },
+        { id: 4, type: "house", priceRange: "over5", title: "Shophouse Mặt Tiền Kinh Doanh", price: "12 Tỷ VND", area: "120m2", img: "https://images.unsplash.com/photo-1575517111478-7f6afd0973db?auto=format&fit=crop&w=600&q=80" },
+        { id: 5, type: "apartment", priceRange: "over5", title: "Penthouse View Biển Vũng Tàu", price: "25 Tỷ VND", area: "250m2", img: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=600&q=80" },
+        { id: 6, type: "house", priceRange: "over5", title: "Nhà Phố Liền Kề Compound", price: "8 Tỷ VND", area: "90m2", img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80" },
+        { id: 7, type: "apartment", priceRange: "under3", title: "Căn Hộ Studio Hiện Đại", price: "1.5 Tỷ VND", area: "35m2", img: "https://images.unsplash.com/photo-1536376072261-38c75010e6c9?auto=format&fit=crop&w=600&q=80" },
+        { id: 8, type: "villa", priceRange: "over5", title: "Biệt Thự Đồi Thông Đà Lạt", price: "18 Tỷ VND", area: "500m2", img: "https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&w=600&q=80" },
+        { id: 9, type: "land", priceRange: "3to5", title: "Đất Nền Ven Biển Nha Trang", price: "4.5 Tỷ VND", area: "150m2", img: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80" },
+        { id: 10, type: "apartment", priceRange: "over5", title: "Căn Hộ Duplex Thông Tầng", price: "9 Tỷ VND", area: "140m2", img: "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&w=600&q=80" },
+        { id: 11, type: "villa", priceRange: "over5", title: "Dinh Thự Sinh Thái", price: "45 Tỷ VND", area: "1000m2", img: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=600&q=80" },
+        { id: 12, type: "house", priceRange: "over5", title: "Nhà Vườn Nghỉ Dưỡng", price: "6 Tỷ VND", area: "400m2", img: "https://images.unsplash.com/photo-1588880331179-bc9b93a8cb65?auto=format&fit=crop&w=600&q=80" },
+        { id: 13, type: "apartment", priceRange: "over5", title: "Căn Hộ 3 Phòng Ngủ Cao Cấp", price: "6.2 Tỷ VND", area: "110m2", img: "https://images.unsplash.com/photo-1502672260266-1c1e52409818?auto=format&fit=crop&w=600&q=80" },
+        { id: 14, type: "land", priceRange: "under3", title: "Đất Sào Nông Nghiệp", price: "800 Triệu VND", area: "1000m2", img: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=600&q=80" },
+        { id: 15, type: "apartment", priceRange: "over5", title: "Khu Phức Hợp Vinhomes", price: "14 Tỷ VND", area: "130m2", img: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80" },
+        { id: 16, type: "apartment", priceRange: "under3", title: "Căn Hộ Bình Dân Tiện Ích", price: "2.1 Tỷ VND", area: "65m2", img: "https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=600&q=80" },
+        { id: 17, type: "land", priceRange: "3to5", title: "Đất Nền KDC Sân Bay", price: "3.2 Tỷ VND", area: "120m2", img: "https://images.unsplash.com/photo-1524813686514-a57563d77965?auto=format&fit=crop&w=600&q=80" },
+        { id: 18, type: "villa", priceRange: "over5", title: "Biệt Thự Song Lập", price: "11 Tỷ VND", area: "200m2", img: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=600&q=80" },
+        { id: 19, type: "apartment", priceRange: "under3", title: "Căn Hộ Officetel", price: "1.8 Tỷ VND", area: "45m2", img: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&q=80" },
+        { id: 20, type: "house", priceRange: "under3", title: "Nhà Cấp 4 Mái Thái", price: "2.5 Tỷ VND", area: "150m2", img: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=600&q=80" },
+        { id: 21, type: "land", priceRange: "under3", title: "Đất Vườn Sinh Thái Ven Sông", price: "1.2 Tỷ VND", area: "500m2", img: "https://images.unsplash.com/photo-1440059918074-8848db2b535d?auto=format&fit=crop&w=600&q=80" },
+        { id: 22, type: "house", priceRange: "over5", title: "Nhà Trọ Trọn Gói 10 Phòng", price: "5.5 Tỷ VND", area: "200m2", img: "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?auto=format&fit=crop&w=600&q=80" },
+        { id: 23, type: "house", priceRange: "over5", title: "Mặt Bằng Kinh Doanh Ngã Tư", price: "15 Tỷ VND", area: "80m2", img: "https://images.unsplash.com/photo-1580982542457-3f746d845e69?auto=format&fit=crop&w=600&q=80" }
+    ];
+
+    // Gộp tin đăng thêm từ người dùng (nếu có)
+    const savedProperties = JSON.parse(localStorage.getItem('savedProperties')) || [];
+    // Gán mặc định type và priceRange cho tin tự đăng để tránh lỗi bộ lọc
+    const userProperties = savedProperties.map(p => ({
+        ...p,
+        type: p.type || "house", 
+        priceRange: p.priceRange || "all" 
+    }));
+    
+    const combinedProperties = [...allProperties, ...userProperties];
+
+    // 2. KIỂM TRA ĐĂNG NHẬP
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    if (!currentUser) {
+        alert('Vui lòng đăng nhập để truy cập hệ thống!');
+        window.location.href = 'login.html';
+    } else {
+        document.getElementById('welcomeMessage').innerText = `👤 Xin chào, ${currentUser.fullname}!`;
+    }
+
+    // 3. HÀM RENDER HTML (GIAO DIỆN LUXURY)
+    function renderProperties(propertiesList) {
+        const container = document.getElementById('listingsContainer');
+        document.getElementById('resultCount').innerText = propertiesList.length;
+        
+        if(propertiesList.length === 0) {
+            container.innerHTML = `<div class="col-12 text-center mt-5 p-5 bg-white shadow-sm"><h5 class="text-muted font-weight-normal">Không tìm thấy kiệt tác nào phù hợp với yêu cầu của bạn.</h5></div>`;
+            return;
+        }
+
+        container.innerHTML = propertiesList.map(prop => {
+            const displayPrice = typeof prop.price === 'number' ? prop.price.toLocaleString() + ' VND' : prop.price;
+            return `
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 project-card">
+                    <div class="card-img-wrapper">
+                        <img src="${prop.img}" class="card-img-top" alt="${prop.title}">
+                    </div>
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">${prop.title}</h5>
+                        <p class="price-tag mb-2">${displayPrice}</p>
+                        <p class="card-text text-muted small mb-3">Diện tích: ${prop.area}</p>
+                        <a href="property_detail.html?id=${prop.id}" class="btn btn-outline-luxury w-100 mt-auto py-2">XEM CHI TIẾT</a>
+                    </div>
+                </div>
+            </div>
+        `}).join('');
+    }
+
+    // 4. HÀM THỰC HIỆN LỌC DỮ LIỆU
+    function applyFilters() {
+        const selectedType = document.getElementById('filterType').value;
+        const selectedPrice = document.getElementById('filterPrice').value;
+
+        const filtered = combinedProperties.filter(prop => {
+            const matchesType = (selectedType === 'all' || prop.type === selectedType);
+            const matchesPrice = (selectedPrice === 'all' || prop.priceRange === selectedPrice);
+            return matchesType && matchesPrice;
+        });
+
+        renderProperties(filtered);
+    }
+
+    // 5. KHỞI CHẠY LẦN ĐẦU
+    renderProperties(combinedProperties);
+
+    // 6. ĐĂNG XUẤT
+    function logout() {
+        localStorage.removeItem('currentUser');
+        window.location.href = 'login.html';
+    }
+</script>
+</body>
+</html>
